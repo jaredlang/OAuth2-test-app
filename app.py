@@ -43,6 +43,10 @@ def sensitive_data():
     access_token = request.headers.get('Authorization').split(' ')[1]
     refresh_token = request.headers.get('X-Refresh-Token')
 
+    print(f"access_token: {access_token}")
+    print(f"refresh_token: {refresh_token}")
+
+    print(f"introspect url: {AUTH_SERVER_URL}/introspect")
     introspection_response = requests.post(f'{AUTH_SERVER_URL}/introspect', data={
         'token': access_token,
         'client_id': CLIENT_ID,
