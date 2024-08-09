@@ -2,6 +2,10 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+@app.route('/')
+def home(): 
+    return "Home Page - OAuth2 Test App", 200
+
 @app.route('/health')
 def health(): 
     return "OK", 200
