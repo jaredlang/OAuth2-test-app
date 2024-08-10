@@ -12,6 +12,68 @@ app = Flask(__name__)
 def home(): 
     return "Home Page - OAuth2 Test App", 200
 
+@app.route('/swagger')
+def swagger(): 
+    return '''
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "OAuth2 Test App",
+    "title": "OAuth2TestApp",
+    "version": "v1"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Default Reponse",
+        "responses": {
+          "200": {
+            "description": "Success response"
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "responses": {
+          "200": {
+            "description": "Health Check Passed"
+          }
+        }
+      }
+    },
+    "/data": {
+      "get": {
+        "summary": "Get Data",
+        "responses": {
+          "200": {
+            "description": "Get Data Successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "string",
+                      "example": "data-123"
+                    },
+                    "username": {
+                      "type": "string",
+                      "example": "user-name"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+''', 200 
+
 @app.route('/health')
 def health(): 
     return "OK", 200
